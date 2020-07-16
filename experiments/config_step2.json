@@ -1,0 +1,218 @@
+{
+    "description": "",
+    "ReIDModel": {
+        "init_args": {
+            "n_parts": 8,
+            "dim_per_part": 64,
+            "pretrained": true,
+            "normalize": true,
+            "im_info": {
+                "size": [
+                    80,
+                    160
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ],
+                "mean": [
+                    104,
+                    117,
+                    123
+                ],
+                "var": [
+                    1,
+                    1,
+                    1
+                ],
+                "channel": "BRG"
+            }
+        },
+        "distance_metric": "euclidean"
+    },
+    "ResNetBackbone": {
+        "init_args": {
+            "layer": 34,
+            "fix_block": 1,
+            "output_dim": 256,
+            "pretrained": true,
+            "im_info": {
+                "size": [
+                    64,
+                    128
+                ],
+                "scale": [
+                    255,
+                    255,
+                    255
+                ],
+                "mean": [
+                    0.406,
+                    0.456,
+                    0.485
+                ],
+                "var": [
+                    0.225,
+                    0.224,
+                    0.229
+                ],
+                "channel": "RGB"
+            }
+        }
+    },
+    "NaiveMatch": {
+        "init_args": {
+            "n_in": 256,
+            "loss_type": "binary_cross_entropy",
+            "np_ratio": 2,
+            "do_drop": 0,
+            "use_pos": false,
+            "encode_pos": true,
+            "embed_pos": true,
+            "pos_dim": 64,
+            "wave_length": 1000
+        }
+    },
+    "GraphMatch_v5": {
+        "init_args": {
+            "n_in": 256,
+            "neighbor_k": 3,
+            "neighbor_type": "pos",
+            "neighbor_weight_branch": "none",
+            "absorb_weight": 0.75,
+            "use_pos": true,
+            "encode_pos": true,
+            "embed_pos": true,
+            "pos_quantify": -1,
+            "pos_dim": 64,
+            "wave_length": 1000,
+            "pos_dim_out": 256,
+            "do_drop": 0.0,
+            "loss_type": "binary_cross_entropy",
+            "np_ratio": 2,
+            "train_part": "all"
+        }
+    },
+    "GraphSimilarity": {
+        "init_args": {
+            "backbone_name": "ResNetBackbone",
+            "match_name": "GraphMatch_v5",
+            "backbone_args": {
+                "layer": 34,
+                "fix_block": 1,
+                "output_dim": 256,
+                "pretrained": true,
+                "im_info": {
+                    "size": [
+                        64,
+                        128
+                    ],
+                    "scale": [
+                        255,
+                        255,
+                        255
+                    ],
+                    "mean": [
+                        0.406,
+                        0.456,
+                        0.485
+                    ],
+                    "var": [
+                        0.225,
+                        0.224,
+                        0.229
+                    ],
+                    "channel": "RGB"
+                }
+            },
+            "graphmatch_args": {
+                "n_in": 256,
+                "neighbor_k": 3,
+                "neighbor_type": "pos",
+                "neighbor_weight_branch": "none",
+                "absorb_weight": 0.75,
+                "use_pos": true,
+                "encode_pos": true,
+                "embed_pos": true,
+                "pos_quantify": -1,
+                "pos_dim": 64,
+                "wave_length": 1000,
+                "pos_dim_out": 256,
+                "do_drop": 0.0,
+                "loss_type": "binary_cross_entropy",
+                "np_ratio": 2,
+                "train_part": "all"
+            },
+            "naivematch_args": null,
+            "pad_boxes": false,
+            "train_part": "backbone, graph_match, naive_match"
+        }
+    },
+    "MOTTrackletStack": {
+        "year": "MOT17",
+        "min_num_frame": 2,
+        "max_num_frame": 10,
+        "num_frame": -1,
+        "max_num_node": 40,
+        "min_num_node": 6,
+        "pad_boxes": false,
+        "im_info": {
+            "size": [
+                64,
+                128
+            ],
+            "scale": [
+                255,
+                255,
+                255
+            ],
+            "mean": [
+                0.406,
+                0.456,
+                0.485
+            ],
+            "var": [
+                0.225,
+                0.224,
+                0.229
+            ],
+            "channel": "RGB"
+        },
+        "cache_dir": "data_cache",
+        "augment": true
+    },
+    "MOTFramePair": {
+        "year": "MOT17",
+        "min_num_frame": 2,
+        "max_num_frame": 10,
+        "num_frame": 2,
+        "max_num_node": -1,
+        "min_num_node": -1,
+        "pad_boxes": false,
+        "im_info": {
+            "size": [
+                64,
+                128
+            ],
+            "scale": [
+                255,
+                255,
+                255
+            ],
+            "mean": [
+                0.406,
+                0.456,
+                0.485
+            ],
+            "var": [
+                0.225,
+                0.224,
+                0.229
+            ],
+            "channel": "RGB"
+        },
+        "cache_dir": "data_cache",
+        "augment": false
+    }
+}

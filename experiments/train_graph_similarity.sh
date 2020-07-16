@@ -1,0 +1,2 @@
+python train_sim_model.py --gpu_id 0 --model_name GraphSimilarity_v5 --session 1 --save_dir logs --config_file ./experiments/config_step1.json
+python train_sim_model.py --gpu_id 0 --model_name GraphSimilarity_v5 --session 2 --save_dir logs --config_file ./experiments/config_step2.json --para_path ./logs/GraphSimilarity_v5/2/GraphSimilarity_v5_1_20.pth
