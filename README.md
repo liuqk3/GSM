@@ -78,7 +78,8 @@ The model and logs will be saved in `${GSM_ROOT}/logs`.
 @book{ijcai2020gsm,
   title={GSM: Graph Similarity Model for Multi-object Tracking},
   author={Qiankun Liu, Qi Chu, Bin Liu and Nenghai Yu},
+  booktitle={International Joint Conferences on Artificial Intelligence Organization}
   year={2020},
-  publisher={IJCAI}
+  volume={7},
 }
 ```
