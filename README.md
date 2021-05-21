@@ -83,3 +83,4 @@ The model and logs will be saved in `${GSM_ROOT}/logs`.
   volume={7},
 }
 ```
+Note: there is a little error in Google scholar about our paper, because the title of the paper is renamed to `Graph Similarity Model for Multi-object Tracking`.
