@@ -57,7 +57,7 @@ Just run:
 ```
 python eval_mot.py
 ```
-The configuration of tracker is the file `${GSM_ROOT}/tracker_config.py`, in which you can try different cofigurations. The default is configuration for our paper.
+The configuration of tracker is the file `${GSM_ROOT}/tracker_config.py`, in which you can try different cofigurations. The default mybe a little difference with that used for our paper, which has a negligible impact on the final tracking results.
 
 The results will be saved in `${GSM_ROOT}/track_results`.
 
