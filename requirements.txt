@@ -9,7 +9,7 @@ opencv_python==4.0.1.24
 scipy==1.4.1
 pandas==0.25.3
 tensorflow==1.4.1
-Pillow==7.1.2
+Pillow==9.3.0
 pycocotools==2.0.1
 scikit_learn==0.23.1
 tensorboardX==2.0
